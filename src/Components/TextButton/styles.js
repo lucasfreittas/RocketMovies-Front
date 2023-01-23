@@ -3,14 +3,18 @@ import styled from 'styled-components';
 export const Container = styled.button`
     display: flex;
     gap: 8px;
-    padding: 16px 32px;
+
     align-items: center;
     text-align: center;
+    justify-content: center;
 
-    background-color: ${({theme}) => theme.COLORS.PINK};
-    color: ${({theme}) => theme.COLORS.BLACK};
+    font-size: 16px;
+    font-weight: 400;
 
-    border: 0;
-    border-radius: 8px;
+    background: none;
+    color: ${({theme}) => theme.COLORS.PINK};
+
+    border: none;
+
 
 `;
