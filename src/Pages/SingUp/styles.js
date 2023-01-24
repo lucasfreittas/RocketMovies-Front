@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import cinema from '../../Assets/cinema.png'
 
+
 export const Container = styled.div`
     display: flex;
     height: 100vh;
@@ -45,8 +46,17 @@ export const Form = styled.div`
         margin: 24px 0;
         width: 100%;
         justify-content: center;
+    };
+    
     }
+
+    > .link {
+        width: 100%;
+        justify-content: center;
+        display: flex;
     }
+ 
+  
 
    
 `;

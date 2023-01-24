@@ -25,7 +25,12 @@ export const Section = styled.div`
 
         > h3 {
                 font-size: 32px;
+                width: 100%;
             }
+        
+        > button {
+            width: 300px;
+        }
 `;
 
 export const Movies = styled.div`

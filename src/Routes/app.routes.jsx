@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 
 import { Home } from '../Pages/Home';
+import { Profile } from '../Pages/Profile';
 import { SignIn } from '../Pages/SingIn';
 import { SignUp } from '../Pages/SingUp';
+import { CreateNote } from '../Pages/CreateNote';
 
 export function AppRoutes(){
     return(
@@ -10,6 +12,8 @@ export function AppRoutes(){
             <Route path='/' element={<Home/>} />
             <Route path='/signin' element={<SignIn/>} />
             <Route path='/signup' element={<SignUp/>} />
+            <Route path='/profile' element={<Profile/>} />
+            <Route path='/createnote' element={<CreateNote/>} />
         </Routes>
     )
 }

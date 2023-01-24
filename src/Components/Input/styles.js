@@ -9,7 +9,7 @@ export const Container = styled.div`
     color: ${({theme}) => theme.COLORS.GRAY_100};
     display: flex;
     align-items: center;
-    padding-left: 24px;
+    padding: 0 24px;
 
 
     > input {
@@ -17,6 +17,7 @@ export const Container = styled.div`
         border: none;
         color: ${({theme}) => theme.COLORS.WHITE};
         font-weight: normal;
+        width: 100%;
 
         &::placeholder{
         color: ${({theme}) => theme.COLORS.GRAY_100};

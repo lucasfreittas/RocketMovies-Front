@@ -19,19 +19,19 @@ export const Form = styled.div`
         font-size: 48px;
         color: ${({theme}) => theme.COLORS.PINK};
         font-weight: bold;
-    }
+    };
 
     > span {
         font-size: 14px;
         color: ${({theme}) => theme.COLORS.GRAY_100};
         align-items: flex-start;
-    }
+    };
 
     > h3 {
         margin: 42px 0;
         font-size: 24px;
         font-weight: 400;
-    }
+    };
 
     > div {
         width: 100%;
@@ -45,10 +45,15 @@ export const Form = styled.div`
         margin: 24px 0;
         width: 100%;
         justify-content: center;
-    }
-    }
+    };
+}
+    > .link {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+           
+        }
 
-   
 `;
 
 export const BackgroundImg = styled.div`

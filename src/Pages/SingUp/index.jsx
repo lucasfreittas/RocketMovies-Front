@@ -3,6 +3,7 @@ import { Input } from '../../Components/Input';
 import { Button } from '../../Components/Button';
 import { TextButton } from '../../Components/TextButton';
 import { FiMail, FiLock, FiArrowLeft, FiUser } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 export function SignUp(){
     return(
@@ -20,7 +21,9 @@ export function SignUp(){
                     <Button title='Cadastrar'/>
                 </div>
 
-                <TextButton title='Voltar para o login' icon={FiArrowLeft}/>
+                <Link to='/signin' className='link'>
+                    <TextButton title='Voltar para o login' icon={FiArrowLeft}/>
+                </Link>
             </Form>
 
             <BackgroundImg/>
