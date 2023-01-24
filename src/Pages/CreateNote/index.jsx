@@ -6,14 +6,16 @@ import { TextButton } from '../../Components/TextButton';
 import { CreateTags } from '../../Components/CreateTags';
 import { Button } from '../../Components/Button';
 import { FiArrowLeft } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 export function CreateNote(){
     return(
         <Container>
             <Header/>
             <Content>
-                <TextButton title='Voltar' icon={FiArrowLeft}/>
-
+                <Link to='/' >
+                    <TextButton title='Voltar' icon={FiArrowLeft} className='linkWrapper'/>
+                </Link>
                 <Form>
                     <h1>Novo Filme</h1>
 

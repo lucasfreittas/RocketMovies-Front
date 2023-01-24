@@ -12,7 +12,7 @@ export const Container = styled.header`
 
     border-bottom: ${({theme}) => `1px solid ${theme.COLORS.GRAY_300}`};
 
-    > h1 {
+     h1 {
         font-size: 32px;
         color: ${({theme}) => theme.COLORS.PINK}
     }
@@ -23,7 +23,7 @@ export const Profile = styled.div`
     gap: 12px;
     align-items: center;
 
-    > img {
+    img {
         width: 80px;
         height: 80px;
         border-radius: 50%;

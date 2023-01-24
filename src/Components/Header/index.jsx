@@ -1,13 +1,15 @@
 import { Container, Profile } from "./styles";
 import { Input } from "../Input";
-
+import { Link } from 'react-router-dom' 
 import {FiSearch} from 'react-icons/fi'
 
 
 export function Header(){
     return(
         <Container>
-            <h1>RocketMovies</h1>
+            <Link to='/'>
+                <h1>RocketMovies</h1>
+            </Link>
 
             <Input icon={FiSearch} placeholder='Pesquisar pelo título'/>
 
@@ -16,8 +18,10 @@ export function Header(){
                     <strong>Lucas de Freitas</strong>
                     <button>sair</button>
                 </div>
-                <img src="http://github.com/lucasfreittas.png" alt="Foto do Usuário" />
-            </Profile>
+                <Link to='/profile'>
+                    <img src="http://github.com/lucasfreittas.png" alt="Foto do Usuário" />
+                </Link>
+           </Profile>
         </Container>
     )
 }

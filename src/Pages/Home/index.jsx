@@ -1,11 +1,11 @@
 import { Container, Movies, Section } from './styles';
 
-import { FiPlus} from 'react-icons/fi';
-
+import { FiPlus } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Header } from '../../Components/Header';
-import { Tags } from '../../Components/Tags';
 import { Button } from '../../Components/Button';
 import { Card } from '../../Components/Card';
+
 
 
 export function Home(){
@@ -14,7 +14,9 @@ export function Home(){
             <Header/>
             <Section>
                     <h3>Meus Filmes</h3>
-                    <Button title='Adicionar Filme' icon={FiPlus}/>
+                    <Link to='/createnote'>
+                        <Button title='Adicionar Filme' icon={FiPlus}/>
+                    </Link>
             </Section>
             <Movies>
       

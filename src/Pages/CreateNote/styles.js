@@ -16,7 +16,7 @@ export const Content = styled.div`
     margin: 40px 0;
     overflow-y: auto;
     
-    > button {
+    .linkWrapper {
         margin: 0 10%;
     }
 
@@ -58,8 +58,10 @@ export const SectionTags = styled.div`
     }
 
     > .bts {
+       
         display: flex;
         gap: 40px;
+        
     }
 `;
 

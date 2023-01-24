@@ -28,8 +28,8 @@ export const Section = styled.div`
                 width: 100%;
             }
         
-        > button {
-            width: 300px;
+        button {
+            width: 220px;
         }
 `;
 
