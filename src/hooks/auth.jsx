@@ -29,7 +29,15 @@ export function AuthProvider({ children }) {
             };
     };
 
-    async function updateUser({user}){
+    async function updateUser({user, avatarFile}){
+
+        if(avatarFile){
+            const fileUploadForm = new FormData();
+            fileUploadForm.append('avatar', avatarFile);
+
+            const response = await api.patch('/user/avatar', fileUploadForm);
+            user.avatar = response.data.avatar
+        }
 
         try{
             await api.put('/user', user);

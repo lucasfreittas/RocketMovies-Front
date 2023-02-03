@@ -8,12 +8,17 @@ import { TextButton } from '../../Components/TextButton'
 import { Input } from '../../Components/Input'
 import { Button } from '../../Components/Button'
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi'
+import placeholderAvatar from '../../Assets/placeholderAvatar.svg'
 
 import { Link } from 'react-router-dom'
 
 
 export function Profile(){
     const { user, updateUser } = useAuth()
+    
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : placeholderAvatar;
+    const [avatarFile, setAvatarFile] = useState(null);
+    const [avatarImg, setAvatarImg] = useState(avatarUrl);
 
     const [ name, setName ] = useState(user.name);
     const [ email, setEmail ] = useState(user.email);
@@ -29,8 +34,16 @@ export function Profile(){
         };
 
         const userUpdated = Object.assign(user, updated)
-        await updateUser({user: userUpdated})
+        await updateUser({user: userUpdated, avatarFile})
 
+    }
+
+    function handleAvatar(event){
+        const file = event.target.files[0];
+        setAvatarFile(file);
+
+        const imagePreview = URL.createObjectURL(file);
+        setAvatarImg(imagePreview);
     }
 
     return(
@@ -42,10 +55,16 @@ export function Profile(){
             </ProfileHeader>
 
             <Avatar>
-                <img src="http://github.com/lucasfreittas.png" alt="Foto do Usuário" />
+                <img src={avatarImg} alt={`Foto de ${user.name}`} />
                 <label htmlFor="avatar">
                     <FiCamera/>
-                    <input type="file" id='avatar' name='avatar' accept='image/png, image/jpeg' />
+                    <input
+                        type="file"
+                        id='avatar'
+                        name='avatar'
+                        accept='image/png, image/jpeg'
+                        onChange={handleAvatar}
+                    />
                 </label>
             </Avatar>
 

@@ -26,6 +26,7 @@ export const Profile = styled.div`
     img {
         width: 80px;
         height: 80px;
+        object-fit: cover;
         border-radius: 50%;
     }
 
@@ -38,6 +39,7 @@ export const Profile = styled.div`
         strong{
             font-size: 16px;
             font-weight: bold;
+            text-align: right;
         }
 
         button{
