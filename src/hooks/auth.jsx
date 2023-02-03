@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from '../services/axios';
 
 export const AuthContext = createContext({});
@@ -26,13 +26,53 @@ export function AuthProvider({ children }) {
                 } else {
                     alert('Não foi possível entrar');
                 }
+            };
+    };
+
+    async function updateUser({user}){
+
+        try{
+            await api.put('/user', user);
+
+            localStorage.setItem('@rocketflix:user', JSON.stringify(user));
+            setData({user, token: user.token})
+
+            alert('Perfil Atualizado!')
+
+        } catch(error) {
+            
+            if(error.response){
+                alert(error.response.data.message);
+            } else {
+                alert('Não foi possível alterar a senha')
             }
-    }
+        } 
+    };
+
+    async function logOut(){
+        localStorage.removeItem('@rocketflix:user');
+        localStorage.removeItem('@rocketflix:token');
+
+        setData({})
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem('@rocketflix:token');
+        const user = localStorage.getItem('@rocketflix:user');
+
+        if(token && user){
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            setData({token, user: JSON.parse(user)})
+        }
+    }, [])
 
     return(
         <AuthContext.Provider value={{
             user: data.user,
             signIn,
+            logOut,
+            updateUser,
         }}>
             {children}
         </AuthContext.Provider>
