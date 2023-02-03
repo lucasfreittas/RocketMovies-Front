@@ -1,4 +1,5 @@
 import { Container, Form, Content, SectionTags } from './styles';
+
 import { Header } from '../../Components/Header';
 import { Input } from '../../Components/Input';
 import { TextArea } from '../../Components/TextArea';
@@ -6,7 +7,10 @@ import { TextButton } from '../../Components/TextButton';
 import { CreateTags } from '../../Components/CreateTags';
 import { Button } from '../../Components/Button';
 import { FiArrowLeft } from 'react-icons/fi'
+
 import { Link } from 'react-router-dom'
+
+
 
 export function CreateNote(){
     return(

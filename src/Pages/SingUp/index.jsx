@@ -21,7 +21,7 @@ export function SignUp(){
                     <Button title='Cadastrar'/>
                 </div>
 
-                <Link to='/signin' className='link'>
+                <Link to='/' className='link'>
                     <TextButton title='Voltar para o login' icon={FiArrowLeft}/>
                 </Link>
             </Form>
