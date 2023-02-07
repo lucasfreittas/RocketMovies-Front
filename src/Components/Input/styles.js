@@ -19,6 +19,10 @@ export const Container = styled.div`
         font-weight: normal;
         width: 100%;
 
+        &:focus::-webkit-input-placeholder{
+            color: transparent;
+        }
+
         &::placeholder{
         color: ${({theme}) => theme.COLORS.GRAY_100};
         font-weight: normal;

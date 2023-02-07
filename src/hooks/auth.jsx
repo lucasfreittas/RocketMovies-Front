@@ -5,7 +5,7 @@ import { api } from '../services/axios';
 export const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
-
+    
     const [data, setData] = useState({});
 
     async function signIn({email, password}){
@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
             setData({user, token})
+            
 
             } catch (error) {
                 if(error.response){
@@ -64,6 +65,26 @@ export function AuthProvider({ children }) {
         setData({})
     };
 
+    function verifyTokenTimer(){
+        const token = localStorage.getItem('@rocketflix:token');
+
+        if(token){
+            const expirationTime = JSON.parse(atob(token.split('.')[1])).exp;
+            const currentTime = Date.now() / 1000;
+            console.log('verificado')
+            if(expirationTime < currentTime){
+                logOut()
+                window.location.href='/'
+            }
+        }
+    }
+
+// Estado para atualizar automaticamente chamando assim o verifyTokenTimer
+    const [counter, setCounter] = useState(0);
+    function plusOne(){
+        setCounter(counter + 1)
+    }
+  
     useEffect(() => {
         const token = localStorage.getItem('@rocketflix:token');
         const user = localStorage.getItem('@rocketflix:user');
@@ -72,12 +93,16 @@ export function AuthProvider({ children }) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             setData({token, user: JSON.parse(user)})
+          
         }
     }, [])
+  
 
     useEffect(() => {
-        setTimeout(logOut, 86400000)
-    }, [data])
+        setTimeout(plusOne, 300000)
+        verifyTokenTimer()
+    }, [counter])
+
 
     return(
         <AuthContext.Provider value={{
