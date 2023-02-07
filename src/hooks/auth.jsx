@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from '../services/axios';
 
 export const AuthContext = createContext({});
@@ -60,7 +61,6 @@ export function AuthProvider({ children }) {
     async function logOut(){
         localStorage.removeItem('@rocketflix:user');
         localStorage.removeItem('@rocketflix:token');
-
         setData({})
     };
 
@@ -75,12 +75,17 @@ export function AuthProvider({ children }) {
         }
     }, [])
 
+    useEffect(() => {
+        setTimeout(logOut, 86400000)
+    }, [data])
+
     return(
         <AuthContext.Provider value={{
             user: data.user,
             signIn,
             logOut,
             updateUser,
+
         }}>
             {children}
         </AuthContext.Provider>
