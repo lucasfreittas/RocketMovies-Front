@@ -11,6 +11,13 @@ export const Container = styled.div`
     height: 100vh;
     justify-content: center;
 
+    > section {
+        display: flex;
+        flex-direction: column;
+        
+        height: 100vh;
+    }
+
 `;
 
 export const Section = styled.div`

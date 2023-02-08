@@ -10,7 +10,7 @@ import {FiSearch} from 'react-icons/fi'
 import placeholderAvatar from '../../Assets/placeholderAvatar.svg'
 
 
-export function Header(){
+export function Header({...rest}){
     const { user, logOut } = useAuth();
     const navigate = useNavigate()
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : placeholderAvatar;
@@ -26,7 +26,11 @@ export function Header(){
                 <h1>RocketMovies</h1>
             </Link>
 
-            <Input icon={FiSearch} placeholder='Pesquisar pelo título'/>
+            <Input
+                icon={FiSearch}
+                placeholder='Pesquisar pelo título'
+                {...rest}
+            />
 
             <Profile>
                 <div>

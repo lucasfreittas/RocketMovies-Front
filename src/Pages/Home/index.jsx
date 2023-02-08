@@ -5,52 +5,55 @@ import { Link } from 'react-router-dom';
 import { Header } from '../../Components/Header';
 import { Button } from '../../Components/Button';
 import { Card } from '../../Components/Card';
+import { useEffect, useState } from 'react';
+import { api } from '../../services/axios';
 
 
 
 export function Home(){
+    const [ notes, setNotes ] = useState([]);
+    const [ search, setSearch ] = useState('');
+
+
+    useEffect(() => {
+        async function fetchNotes(){
+            const response = await api.get(`/notes?title=${search}`);
+            setNotes(response.data)
+            console.log([notes])
+        }
+
+        fetchNotes();
+    }, [search])
+
     return(
         <Container>
-            <Header/>
-            <Section>
-                    <h3>Meus Filmes</h3>
-                    <Link to='/createnote'>
-                        <Button title='Adicionar Filme' icon={FiPlus}/>
-                    </Link>
-            </Section>
-            <Movies>
-      
-                <main>
-               
-                        <Card data={{
-                                title: 'Interestellar',
-                                description: 'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se',
-                                tags:[
-                                    {id: '1', name: 'Ficção Cientifica'},
-                                    {id: '2', name: 'Ação'}
-                                ]
-                        }}/>
+            <Header
+                value={search}
+                onChange={e => setSearch(e.target.value)}
 
-                            <Card data={{
-                                title: 'Interestellar',
-                                description: 'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se',
-                                tags:[
-                                    {id: '1', name: 'Ficção Cientifica'},
-                                    {id: '2', name: 'Ação'}
-                                ]
-                        }}/>
-
-                            <Card data={{
-                                title: 'Interestellar',
-                                description: 'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se',
-                                tags:[
-                                    {id: '1', name: 'Ficção Cientifica'},
-                                    {id: '2', name: 'Ação'}
-                                ]
-                        }}/>
-                   
-                </main>
-            </Movies>
+            />
+            <section>
+                <Section>
+                        <h3>Meus Filmes</h3>
+                        <Link to='/createnote'>
+                            <Button title='Adicionar Filme' icon={FiPlus}/>
+                        </Link>
+                </Section>
+                <Movies>
+        
+                    <main>
+                        {
+                            notes && notes.map((note) => (
+                                <Card
+                                    key={String(note.id)}
+                                    data={note}
+                                />
+                            ))
+                        }
+                    
+                    </main>
+                </Movies>
+            </section>
         </Container>
     )
 }
