@@ -11,24 +11,59 @@ import { Button } from '../../Components/Button';
 import { FiArrowLeft } from 'react-icons/fi'
 
 import { Link, useNavigate } from 'react-router-dom'
+import { api } from '../../services/axios';
 
 
 export function CreateNote(){
+    const navigate = useNavigate()
+
     const [ title, setTitle] = useState('');
-    const [ rate, setRate] = useState(0);
+    const [ rating, setRating] = useState(0);
     const [ description, setDescription] = useState('');
 
-    const navigate = useNavigate()
-    
-    function handleNewNote(){
-        console.log(title, rate, description)
+    const [ tags, setTags ] = useState([]);
+    const [ newTag, setNewTag ] = useState('');
+
+    function handleAddTag(){
+        setTags(prevState => [...prevState, newTag])
+        setNewTag('');
+    }
+
+    function handleRemoveTag(tagToDelete){
+        setTags(prevState => prevState.filter(allTags => allTags !== tagToDelete))
     }
 
     function handleClearNote(){
-        navigate('/oi')
-        window.location.reload(true)
-        console.log('oi')
+        window.location.reload()
+        
     }
+    
+    async function handleNewNote(){
+        const newNote = {
+            title,
+            rating,
+            description,
+            tags,
+        };
+
+        if(!title){
+            return alert('Adicione um título')
+        };
+
+        if(!rating){
+            return alert('Adicione uma nota ao filme')
+        };
+
+        if(newTag){
+            return alert('Uma das tags ficou em aberto, volte adicione-a')
+        }
+
+        await api.post('/notes', newNote);
+        alert('Nota criada com sucesso!');
+        navigate(-1);
+    }
+
+ 
 
     return(
         <Container>
@@ -53,7 +88,7 @@ export function CreateNote(){
                             min='0'
                             max='10'
                             placeholder='Sua nota (de 0 a 5)'
-                            onChange={e => setRate(e.target.value)}
+                            onChange={e => setRating(e.target.value)}
                         />
                     </div>
 
@@ -66,8 +101,22 @@ export function CreateNote(){
                 <SectionTags>
                     <h3>Marcadores</h3>
                     <div className='newTags'>
-                        <CreateTags title='React'/>
-                        <CreateTags title='Novo Marcador' isNew={true}/>
+                        {
+                            tags.map((tag, index) => (
+                                <CreateTags
+                                    key={String(index)}
+                                    value={tag}
+                                    onClick={() => handleRemoveTag(tag)}
+                                />
+                            ))
+                        }
+                        <CreateTags
+                            placeholder='Adicionar Tag'
+                            isNew={true}
+                            value={newTag}
+                            onChange={e => setNewTag(e.target.value)}
+                            onClick={handleAddTag}
+                        />
                     </div>
 
                     <div className='bts'>

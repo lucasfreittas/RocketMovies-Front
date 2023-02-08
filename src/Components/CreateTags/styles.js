@@ -13,6 +13,13 @@ export const Container = styled.div`
     width: fit-content;
     border-radius: 8px;
 
+    > input {
+        background: none;
+        width: 100%;
+        border: none;
+        color: ${({theme}) => theme.COLORS.WHITE}
+    }
+
     > button{
         font-size: 20px;
         color: ${({theme}) => theme.COLORS.PINK};
