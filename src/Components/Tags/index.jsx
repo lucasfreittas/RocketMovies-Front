@@ -1,8 +1,8 @@
 import { Container } from './styles';
 
-export function Tags({title, ...rest}){
+export function Tags({title, onClick, ...rest}){
     return(
-        <Container {...rest}>
+        <Container onClick={onClick} {...rest}>
             {title}
         </Container>
     )

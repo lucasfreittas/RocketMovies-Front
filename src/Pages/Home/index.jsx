@@ -13,23 +13,25 @@ import { api } from '../../services/axios';
 export function Home(){
     const [ notes, setNotes ] = useState([]);
     const [ search, setSearch ] = useState('');
+    const [ taguinha, setTaguinha] = useState('');
+
 
 
     useEffect(() => {
         async function fetchNotes(){
-            const response = await api.get(`/notes?title=${search}`);
+            const response = await api.get(`/notes?title=${search}&tags=${taguinha}`);
             setNotes(response.data)
-            console.log([notes])
         }
-
         fetchNotes();
-    }, [search])
+        console.log(taguinha)
+    }, [search, taguinha])
 
     return(
         <Container>
             <Header
                 value={search}
                 onChange={e => setSearch(e.target.value)}
+                onClick={() => setTaguinha('')}
 
             />
             <section>
@@ -43,10 +45,11 @@ export function Home(){
         
                     <main>
                         {
-                            notes && notes.map((note) => (
+                            notes && notes.map((note, index) => (
                                 <Card
                                     key={String(note.id)}
                                     data={note}
+                                    setTaguinha={setTaguinha}
                                 />
                             ))
                         }

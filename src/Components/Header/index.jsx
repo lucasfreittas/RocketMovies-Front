@@ -10,7 +10,7 @@ import {FiSearch} from 'react-icons/fi'
 import placeholderAvatar from '../../Assets/placeholderAvatar.svg'
 
 
-export function Header({...rest}){
+export function Header({onClick, ...rest}){
     const { user, logOut } = useAuth();
     const navigate = useNavigate()
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : placeholderAvatar;
@@ -22,7 +22,7 @@ export function Header({...rest}){
 
     return(
         <Container>
-            <Link to='/'>
+            <Link to='/' onClick={onClick}>
                 <h1>RocketMovies</h1>
             </Link>
 
