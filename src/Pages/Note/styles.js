@@ -17,6 +17,12 @@ export const Content = styled.div`
 
     overflow-y: auto;
     padding: 0 10%;
+
+    > .options{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
 `;
 
 export const NoteView = styled.div`

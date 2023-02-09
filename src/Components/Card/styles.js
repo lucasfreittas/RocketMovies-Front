@@ -34,6 +34,7 @@ export const Header = styled.div`
             color: ${({theme}) => theme.COLORS.PINK};
             stroke-width: 2px;
             margin-top: 8px;
+            fill: ${({theme}) => theme.COLORS.PINK};
         }
     }
 

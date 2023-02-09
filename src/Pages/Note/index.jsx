@@ -20,6 +20,11 @@ export function Note(){
     const params = useParams();
     const navigate = useNavigate();
 
+    async function handleDeleteNote(){
+        await api.delete(`/notes/${params.id}`)
+        navigate('/')
+    }
+
 
     useEffect(() => {
         async function fetchNote(){
@@ -50,9 +55,13 @@ export function Note(){
         <Container>
             <Header />
             <Content>
-                <Link to='/'>
-                <TextButton title='Voltar' icon={FiArrowLeft}/> 
-                </Link>
+                <div className='options'>
+                    <Link to='/'>
+                        <TextButton title='Voltar' icon={FiArrowLeft}/> 
+                    </Link>
+                    
+                    <TextButton title='Excluir Nota' onClick={handleDeleteNote} /> 
+                </div>
 
                 <NoteView>
                     <div className='movieTitle'>
