@@ -1,27 +1,33 @@
 import { Container, Header, Main, Footer } from "./styles";
 import { FiStar } from 'react-icons/fi'
 import { Tags } from "../Tags";
+import { useEffect, useState } from "react";
 
 
 export function Card({data, setTaguinha, onClick, ...rest}){
-
-    function handleStars(data){
-       const numberOfStars = Math.ceil(data / 2);
-       return [...Array(numberOfStars)].map((_, index) => (
-        <FiStar key={index}/>
-       ))
-    }
+    const [stars, setStars] = useState([])
+ 
 
     function handleClickedTag(tag){
         setTaguinha(tag.name)
     }
     
+    useEffect(() => {
+
+        function handleStars(data){
+            const numberOfStars = Math.ceil(data.rating / 2);
+            setStars([...Array(numberOfStars)].map((_, index) => (
+             <FiStar key={index}/>
+            )))
+         }
+         handleStars(data)
+    }, [])
     return(
         <Container {...rest} >
             <Header>
                 <h3>{data.title}</h3>
                 <div>
-                    {handleStars(data.rating)}
+                {stars}
                 </div>
     
             </Header>
