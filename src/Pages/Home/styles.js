@@ -10,11 +10,12 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     justify-content: center;
+    overflow: hidden;
 
     > section {
         display: flex;
         flex-direction: column;
-        
+        overflow: auto;
         height: 100vh;
     }
 
@@ -43,13 +44,17 @@ export const Section = styled.div`
 export const Movies = styled.div`
         width: 100%;
         overflow-y: auto;
-        padding: 0 10%;
+        padding: 0 3%;
+        padding-bottom: 10%;
 
 
         > main{
             grid-area: content;
+            padding: 1% 6%;
             width: 100%;
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             gap: 24px;
             overflow-y: auto;

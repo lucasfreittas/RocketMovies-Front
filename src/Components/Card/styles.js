@@ -4,12 +4,21 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 
     padding: 32px;
     border-radius: 16px;
 
     background-color: ${({theme}) => theme.COLORS.BACKGROUND_PINK};
 
+    transition: all 200ms ease;
+
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.03);
+        
+        z-index: 10;
+    }
 `;
 
 export const Header = styled.div`
@@ -53,5 +62,7 @@ export const Main = styled.div`
 
 export const Footer = styled.div`
     display: flex;
+    width: fit-content;
+
     gap: 10px;
 `;

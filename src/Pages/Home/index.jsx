@@ -1,7 +1,7 @@
 import { Container, Movies, Section } from './styles';
 
 import { FiPlus } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Header } from '../../Components/Header';
 import { Button } from '../../Components/Button';
 import { Card } from '../../Components/Card';
@@ -15,6 +15,12 @@ export function Home(){
     const [ search, setSearch ] = useState('');
     const [ taguinha, setTaguinha] = useState('');
     
+    const navigate = useNavigate()
+    
+    function handleNoteDetail(id){
+        console.log(id)
+        navigate(`/note/${id}`)
+    }
 
 
     useEffect(() => {
@@ -29,7 +35,7 @@ export function Home(){
     return(
         <Container>
             <Header
-                value={search || taguinha}
+                value={search}
                 onChange={e => setSearch(e.target.value)}
                 onClick={() => setTaguinha('')}
 
@@ -50,6 +56,7 @@ export function Home(){
                                     key={String(note.id)}
                                     data={note}
                                     setTaguinha={setTaguinha}
+                                    onClick={() => handleNoteDetail(note.id)}
                                 />
                             ))
                         }

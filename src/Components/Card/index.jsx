@@ -8,8 +8,10 @@ export function Card({data, setTaguinha, onClick, ...rest}){
     const [stars, setStars] = useState([])
  
 
-    function handleClickedTag(tag){
+    function handleClickedTag(e, tag){
+        e.stopPropagation();
         setTaguinha(tag.name)
+
     }
     
     useEffect(() => {
@@ -22,13 +24,12 @@ export function Card({data, setTaguinha, onClick, ...rest}){
          }
          handleStars(data)
     }, [])
+
     return(
-        <Container {...rest} >
+        <Container onClick={onClick} {...rest} >
             <Header>
                 <h3>{data.title}</h3>
-                <div>
-                {stars}
-                </div>
+                <div>{stars}</div>
     
             </Header>
 
@@ -37,13 +38,13 @@ export function Card({data, setTaguinha, onClick, ...rest}){
             </Main>
 
             {data.tags &&
-                <Footer>
+                <Footer >
                     {
                         data.tags.map(tag =>
                             <Tags
                                 key={tag.id}
                                 title={tag.name}
-                                onClick={() => handleClickedTag(tag) }
+                                onClick={(e) => handleClickedTag(e ,tag) }
                         />)
                     }
                 </Footer>
