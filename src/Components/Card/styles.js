@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+
     padding: 32px;
     border-radius: 16px;
 
@@ -34,6 +35,18 @@ export const Main = styled.div`
     font-weight: normal;
     color: ${({theme}) => theme.COLORS.GRAY_100};
     margin: 16px 0 20px 0px;
+
+
+    > p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+
+        -webkit-line-clamp: 3;
+        line-clamp: 3; 
+        
+        -webkit-box-orient: vertical;
+    }
 
 
 `;

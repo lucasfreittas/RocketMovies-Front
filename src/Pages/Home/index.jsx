@@ -14,7 +14,7 @@ export function Home(){
     const [ notes, setNotes ] = useState([]);
     const [ search, setSearch ] = useState('');
     const [ taguinha, setTaguinha] = useState('');
-
+    
 
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export function Home(){
     return(
         <Container>
             <Header
-                value={search}
+                value={search || taguinha}
                 onChange={e => setSearch(e.target.value)}
                 onClick={() => setTaguinha('')}
 
